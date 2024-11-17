@@ -17,7 +17,14 @@ pip install winzy-win-geometry
 ```
 ## Usage
 
-Usage instructions go here.
+Usage is 
+
+```bash
+winzy wingeo -t "Terminal"
+```
+
+![winzy wingeo demo](wingeo-demo.gif)
+
 
 ## Development
 
