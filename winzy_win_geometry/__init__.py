@@ -84,7 +84,7 @@ class HelloWorld:
     @winzy.hookimpl
     def register_commands(self, subparser):
         parser = create_parser(subparser)
-        parser.set_defaults(func=self.hello)
+        parser.set_defaults(func=self.main)
 
     def main(self, args):
         _ = get_window_geometry_percentage(args.title)
