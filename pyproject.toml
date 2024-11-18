@@ -10,7 +10,7 @@ classifiers = [
 ]
 dependencies = [
     "winzy",
-    "Quartz ; platform_system != 'Window'",
+    "Quartz ; sys_platform != 'win32'",
 ]
 
 [project.urls]
