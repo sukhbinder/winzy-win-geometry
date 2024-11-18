@@ -10,7 +10,6 @@ classifiers = [
 ]
 dependencies = [
     "winzy",
-    "pillow",
     'Quartz ; platform_system != "Window"',
 ]
 
