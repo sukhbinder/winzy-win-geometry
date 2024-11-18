@@ -1,7 +1,20 @@
 import winzy
-import pyautogui
 import platform
-import pygetwindow as gw
+
+import sys
+
+if sys.platform.startswith("win"):
+    from winzy_win_geometry._wingetsize import (
+        screensize,
+        getWindowGeometry,
+        getAllTitles,
+    )
+else:
+    from winzy_win_geometry._macosgetsize import (
+        screensize,
+        getWindowGeometry,
+        getAllTitles,
+    )
 
 
 def get_window_geometry_percentage(window_title=None):
@@ -15,7 +28,7 @@ def get_window_geometry_percentage(window_title=None):
         - dict: A dictionary with the window geometry in percentage {'width': xx, 'height': xx, 'x': xx, 'y': xx}.
     """
     os_type = platform.system()
-    if os_type not in ['Windows', 'Darwin']:
+    if os_type not in ["Windows", "Darwin"]:
         print("This function supports only Windows and macOS.")
         return None
 
@@ -59,7 +72,7 @@ def get_window_geometry_percentage(window_title=None):
         left = round((win_x / screen_width) * 100, 2)
         top = round((win_y / screen_height) * 100, 2)  # Corrected 'right' to 'top'
 
-        geometry = {'width': width, 'height': height, 'x': left, 'y': top}
+        geometry = {"width": width, "height": height, "x": left, "y": top}
         # print("Window geometry:")
         # for key, value in geometry.items():
         #     print(f"{key}: {value}%")
@@ -68,17 +81,20 @@ def get_window_geometry_percentage(window_title=None):
     except Exception as e:
         print(f"An error occurred: {e}")
         return None
-    
+
 
 def create_parser(subparser):
-    parser = subparser.add_parser("wingeo", description="Get window geometry as a percentage of screen size.")
+    parser = subparser.add_parser(
+        "wingeo", description="Get window geometry as a percentage of screen size."
+    )
     # Add subprser arguments here.
     parser.add_argument("-t", "--title", help="Title of the window to get geometry.")
     return parser
 
 
 class HelloWorld:
-    """ Get window geometry as a percentage of screen size. """
+    """Get window geometry as a percentage of screen size."""
+
     __name__ = "wingeo"
 
     @winzy.hookimpl
@@ -88,9 +104,10 @@ class HelloWorld:
 
     def main(self, args):
         _ = get_window_geometry_percentage(args.title)
-    
+
     def hello(self, args):
         # this routine will be called when "winzy wingeo is called."
         print("Hello! This is an example ``winzy`` plugin.")
+
 
 wingeo_plugin = HelloWorld()

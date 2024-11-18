@@ -20,10 +20,12 @@ pip install winzy-win-geometry
 Usage is 
 
 ```bash
+
 winzy wingeo -t "Terminal"
+
 ```
 
-![winzy wingeo demo](wingeo-demo.gif)
+![winzy wingeo demo](https://raw.githubusercontent.com/sukhbinder/winzy-win-geometry/main/wingeo-demo.gif)
 
 
 ## Development
