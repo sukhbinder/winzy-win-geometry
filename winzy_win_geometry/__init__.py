@@ -33,21 +33,21 @@ def get_window_geometry_percentage(window_title=None):
         return None
 
     try:
-        screen_width, screen_height = pyautogui.size()
+        screen_width, screen_height = screensize()
 
         # Fetch the list of windows and filter by title
         if window_title:
             window = None
-            for w in gw.getAllTitles():
+            for w in getAllTitles():
                 if window_title in w:
-                    window = gw.getWindowGeometry(w)
+                    window = getWindowGeometry(w)
                     break
             if not window:
                 print(f"No window found with title containing '{window_title}'")
                 return None
         else:
             # List all window titles and ask user to select one
-            window_titles = gw.getAllTitles()
+            window_titles = getAllTitles()
             print("Available windows:")
             for i, title in enumerate(window_titles):
                 print(f"{i+1}. {title}")
@@ -58,7 +58,7 @@ def get_window_geometry_percentage(window_title=None):
                     print("Invalid choice.")
                     return None
                 window_title = window_titles[choice]
-                window = gw.getWindowGeometry(window_title)
+                window = getWindowGeometry(window_title)
             except ValueError:
                 print("Invalid input.")
                 return None
@@ -70,7 +70,7 @@ def get_window_geometry_percentage(window_title=None):
         width = round((win_width / screen_width) * 100, 2)
         height = round((win_height / screen_height) * 100, 2)
         left = round((win_x / screen_width) * 100, 2)
-        top = round((win_y / screen_height) * 100, 2)  # Corrected 'right' to 'top'
+        top = round((win_y / screen_height) * 100, 2)
 
         geometry = {"width": width, "height": height, "x": left, "y": top}
         # print("Window geometry:")
